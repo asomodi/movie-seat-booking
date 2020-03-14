@@ -4,9 +4,12 @@ const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
+let ticketPrice = +movieSelect.value; //value of input field
+
 populateUI();
 
-let ticketPrice = +movieSelect.value;
+// initial count and total set
+updateSelectedCount();
 
 // save selected movie index and price to Local Storage
 function setMovieData(movieIndex, moviePrice) {
@@ -19,10 +22,12 @@ function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
   // sets the numbers of the seats
-  const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
+  const seatsIndex = [...selectedSeats].map(function(seat) {
+    return [...seats].indexOf(seat);
+  });
 
   // save the value, convert to Strings to Local Storage
-  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
+  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex)); //converts the value to a JSON string
 
   const selectedSeatsCount = selectedSeats.length;
 
@@ -32,7 +37,7 @@ function updateSelectedCount() {
 
 // get data from localstorage and populate UI
 function populateUI() {
-  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')); //converts the JSON to JS object
 
   if (selectedSeats !== null && selectedSeats.length > 0) {
     seats.forEach((seat, index) => {
@@ -67,6 +72,3 @@ container.addEventListener('click', e => {
     updateSelectedCount();
   }
 });
-
-// initial count and total set
-updateSelectedCount();
