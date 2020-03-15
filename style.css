@@ -7,6 +7,31 @@
 body {
   background-color: #242333;
   color: #fff;
+  overflow: hidden;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.image-container img {
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
+  margin-right: 100px;
+}
+
+.content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
