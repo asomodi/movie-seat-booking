@@ -2,6 +2,7 @@ const container = document.querySelector('.container');
 const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
 const total = document.getElementById('total');
+const image = document.getElementById('image');
 const movieSelect = document.getElementById('movie');
 
 let ticketPrice = +movieSelect.value; //value of input field
@@ -13,8 +14,10 @@ updateSelectedCount();
 
 // save selected movie index and price to Local Storage
 function setMovieData(movieIndex, moviePrice) {
+  console.log(movieIndex);
   localStorage.setItem('selectedMovieIndex', movieIndex);
   localStorage.setItem('selectedMoviePrice', moviePrice);
+  image.src = 'img/' + ticketPrice + '.jpg';
 }
 
 // Update total and count
@@ -30,7 +33,6 @@ function updateSelectedCount() {
   localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex)); //converts the value to a JSON string
 
   const selectedSeatsCount = selectedSeats.length;
-
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * ticketPrice;
 }
